@@ -1,0 +1,24 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teeeedy/YelpCamp.git"
+  },
+  "author": "Wai Yan Lin (Eddy)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Teeeedy/YelpCamp/issues"
+  },
+  "homepage": "https://github.com/Teeeedy/YelpCamp#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  }
+}
