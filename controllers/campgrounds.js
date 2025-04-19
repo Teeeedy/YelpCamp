@@ -1,4 +1,7 @@
 const Campground = require("../models/campground");
+const { cloudinary } = require("../cloudinary/index");
+const maptilerClient = require("@maptiler/client");
+maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
   const campgrounds = await Campground.find({});
@@ -10,11 +13,16 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
+  const geoData = await maptilerClient.geocoding.forward(
+    req.body.campground.location,
+    { limit: 1 }
+  );
   const campground = new Campground(req.body.campground);
   campground.images = req.files.map((f) => ({
     url: f.path,
     filename: f.filename,
   }));
+  campground.geometry = geoData.features[0].geometry;
   campground.author = req.user._id;
   await campground.save();
   req.flash("success", "New campground created!");
@@ -54,6 +62,11 @@ module.exports.updateCampground = async (req, res) => {
   const campground = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
+  const geoData = await maptilerClient.geocoding.forward(
+    req.body.campground.location,
+    { limit: 1 }
+  );
+  campground.geometry = geoData.features[0].geometry;
 
   const imgs = req.files.map((f) => ({
     url: f.path,
@@ -61,6 +74,16 @@ module.exports.updateCampground = async (req, res) => {
   }));
 
   campground.images.push(...imgs);
+
+  if (req.body.deleteImages) {
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    await campground.updateOne({
+      $pull: { images: { filename: { $in: req.body.deleteImages } } },
+    });
+  }
+
   await campground.save();
   req.flash("success", "Succesfully updated campground!");
   res.redirect(`/campgrounds/${campground._id}`);

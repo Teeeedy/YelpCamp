@@ -8,8 +8,7 @@
       action="/campgrounds"
       method="POST"
       enctype="multipart/form-data"
-      novalidate
-    >
+      novalidate>
       <div class="form-group mb-3">
         <label class="form-label" for="title">Title</label>
         <input
@@ -17,8 +16,7 @@
           type="text"
           id="title"
           name="campground[title]"
-          required
-        />
+          required />
         <div class="valid-feedback">Looks good!</div>
       </div>
       <div class="form-group mb-3">
@@ -28,8 +26,7 @@
           type="text"
           id="location"
           name="campground[location]"
-          required
-        />
+          required />
         <div class="valid-feedback">Looks good!</div>
       </div>
 
@@ -37,12 +34,10 @@
         <label for="formFileMultiple" class="form-label">Add Images</label>
         <input
           class="form-control"
-          id="image"
           name="image"
           type="file"
           id="formFileMultiple"
-          multiple
-        />
+          multiple />
       </div>
 
       <!-- <div class="form-group mb-3">
@@ -71,8 +66,7 @@
             placeholder="0.00"
             aria-label="price-label"
             aria-describedby="price-label"
-            required
-          />
+            required />
           <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
@@ -83,8 +77,7 @@
           class="form-control"
           id="description"
           name="campground[description]"
-          required
-        ></textarea>
+          required></textarea>
         <div class="valid-feedback">Looks good!</div>
       </div>
       <button class="btn btn-info">Add Campground</button>
