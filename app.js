@@ -21,7 +21,7 @@ const userRoutes = require("./routes/users.js");
 const campgroundRoutes = require("./routes/campgrounds.js");
 const reviewRoutes = require("./routes/reviews.js");
 
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 const dbUrl = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/yelp-camp";
 const secret = process.env.SECRET || "thisisasecret";
 
