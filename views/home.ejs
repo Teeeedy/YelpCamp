@@ -15,15 +15,28 @@
     <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto d-flex justify-content-between align-items-center">
         <h3 class="mb-0">YelpCamp</h3>
-        <nav class="nav nav-masthead justify-content-center">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="/campgrounds">Campgrounds</a>
-          <% if (!currentUser) { %>
-          <a class="nav-link" href="/login">Login</a>
-          <a class="nav-link" href="/register">Register</a>
-          <% } else { %>
-          <a class="nav-link" href="/logout">Logout</a>
-          <% } %>
+        <nav
+          class="nav navbar nav-masthead justify-content-center navbar-expand-md">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="/campgrounds">Campgrounds</a>
+            <% if (!currentUser) { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } else { %>
+            <a class="nav-link" href="/logout">Logout</a>
+            <% } %>
+          </div>
         </nav>
       </header>
 

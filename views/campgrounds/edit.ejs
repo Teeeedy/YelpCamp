@@ -2,7 +2,7 @@
 
 <div class="row">
   <h1 class="text-center">Edit Campground</h1>
-  <div class="col-6 offset-3">
+  <div class="col-md-6 offset-md-3">
     <form
       class="needs-validation"
       action="/campgrounds/<%=campground._id%>?_method=PUT"
@@ -71,7 +71,11 @@
 
       <div class="mb-3">
         <% campground.images.forEach(function(img, i) {%>
-        <img class="img-thumbnail" src="<%= img.thumbnail%>" alt="" />
+        <img
+          crossorigin="anonymous"
+          class="img-thumbnail"
+          src="<%= img.thumbnail%>"
+          alt="" />
         <div class="form-check-inline">
           <input
             id="image-<%=i%>"
@@ -86,7 +90,7 @@
       <button class="btn btn-info">Update Campground</button>
     </form>
     <div>
-      <a href="/campgrounds/<%= campground._id %>">Back to Campgrounds</a>
+      <a href="/campgrounds/<%= campground._id %>">Back to Campground</a>
     </div>
   </div>
 </div>

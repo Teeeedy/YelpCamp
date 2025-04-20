@@ -1,19 +1,22 @@
 <% layout('./layouts/boilerplate.ejs') %>
 <link rel="stylesheet" href="/css/stars.css" />
 
-<div class="row">
-  <div class="col-6">
-    <div id="map" style="width: 400px; height: 300px"></div>
-    <div id="carouselExample" class="carousel slide">
+<div class="row align-items-stretch mb-3">
+  <!-- Carousel Column -->
+  <div class="col-6 d-flex">
+    <div id="carouselExample" class="carousel slide w-100">
       <div class="carousel-inner">
-        <% campground.images.forEach( (img, i) => { %>
-
-        <div class="carousel-item <%= (i===0) ? 'active' : '' %>">
-          <img src="<%= img.url %>" class="d-block w-100" alt="" />
+        <% campground.images.forEach((img, i) => { %>
+        <div class="carousel-item <%= (i === 0) ? 'active' : '' %>">
+          <img
+            crossorigin="anonymous"
+            src="<%= img.url %>"
+            class="d-block w-100 border rounded"
+            alt="" />
         </div>
-
         <% }) %>
       </div>
+
       <% if (campground.images.length > 1) { %>
       <button
         class="carousel-control-prev"
@@ -33,17 +36,19 @@
       </button>
       <% } %>
     </div>
+  </div>
 
-    <div class="card mb-5">
-      <!-- <% for (let image of campground.images) { %>
-      <img src="<%= image.url %>" class="card-img-top" alt="campground image" />
-      <% } %> -->
-
-      <!-- <img
-        src="<%=campground.image %>"
-        class="card-img-top"
-        alt="campground image"
-      /> -->
+  <!-- Map Column -->
+  <div class="col-6 d-flex">
+    <div
+      crossorigin="anonymous"
+      id="map"
+      class="map border rounded mb-3 w-100"></div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%= campground.title %></h5>
         <p class="card-text"><%= campground.location %></p>
@@ -78,7 +83,9 @@
       </div>
     </div>
   </div>
-  <div class="col-6 mb-5">
+</div>
+<div class="row">
+  <div class="col">
     <% if (currentUser) { %>
     <form
       action="/campgrounds/<%= campground._id %>/reviews"
@@ -141,6 +148,8 @@
       </div>
       <button class="btn btn-success">Add Review</button>
     </form>
+    <% } %> <% if (campground.reviews.length > 0) { %>
+    <h2>Reviews</h2>
     <% } %> <% for(let review of campground.reviews) {%>
     <div class="card mb-3">
       <div class="card-body">

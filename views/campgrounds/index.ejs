@@ -1,51 +1,48 @@
 <% layout('./layouts/boilerplate.ejs') %>
-<div id="map" style="width: 100%; height: 500px"></div>
+<div
+  crossorigin="anonymous"
+  id="map"
+  class="cluster-map mb-3 border rounded"></div>
 
-<h1>All Campgrounds</h1>
-<div>
-  <a href="/campgrounds/new">Add Campground</a>
-</div>
-<ul>
+<h1 class="h1 mb-3">All Campgrounds</h1>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
   <% for (let campground of campgrounds) { %>
-  <div class="card mb-3">
-    <div class="row g-0">
-      <div class="col-md-4">
+    <div class="col">
+      <div class="card">
         <% if(campground.images.length) { %>
-        <img
-          class="img-fluid"
-          src="<%= campground.images[0].url%>"
-          alt="Image of campground" />
-        <% } else { %>
-        <img
-          class="img-fluid"
-          src="https://res-console.cloudinary.com/dc2lyjkps/thumbnails/v1/image/upload/v1744855556/WWVscENhbXAvdWphd3BqYXRyZWRsbWdsdGU2dTE=/drilldown"
-          alt="Image of campground" />
+          <img
+            class="img-fluid"
+            src="<%= campground.images[0].url%>"
+            alt="Image of campground" />
+          <% } else { %>
+          <img
+            crossorigin="anonymous"
+            class="img-fluid"
+            src="https://res-console.cloudinary.com/dc2lyjkps/thumbnails/v1/image/upload/v1744855556/WWVscENhbXAvdWphd3BqYXRyZWRsbWdsdGU2dTE=/drilldown"
+            alt="Image of campground" />
 
-        <% } %>
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= campground.title%></h5>
-          <p class="card-text"><%= campground.description %></p>
-          <p class="card-text">
-            <small class="text-secondary"><%= campground.location%></small>
-          </p>
-          <a class="btn btn-primary" href="/campgrounds/<%=campground._id %>">
-            View <%=campground.title%>
-          </a>
-        </div>
+          <% } %>
+          <div class="card-body">
+            <h5 class="card-title"><%= campground.title%></h5>
+            <p class="card-text"><%= campground.description %></p>
+            <p class="card-text">
+              <small class="text-secondary"><%= campground.location%></small>
+            </p>
+            <a class="stretched-link " href="/campgrounds/<%=campground._id %>">
+              
+            </a>
+          </div>
       </div>
     </div>
-  </div>
-
   <% } %>
-</ul>
-
-<script>
-  const maptilerApiKey = "<%= process.env.MAPTILER_API_KEY %>";
-  const campgrounds = {
-    type: "FeatureCollection",
-    features: <%- JSON.stringify(campgrounds) %>
-  };
-</script>
-<script src="js/clusterMap.js"></script>
+</div>
+  <script>
+    const maptilerApiKey = "<%= process.env.MAPTILER_API_KEY %>";
+    const campgrounds = {
+      type: "FeatureCollection",
+      features: <%- JSON.stringify(campgrounds) %>
+    };
+  </script>
+  <script src="js/clusterMap.js"></script>
+</div>
