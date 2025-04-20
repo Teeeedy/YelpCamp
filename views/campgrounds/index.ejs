@@ -1,4 +1,5 @@
 <% layout('./layouts/boilerplate.ejs') %>
+<link rel="stylesheet" href="/css/index.css">
 <div
   crossorigin="anonymous"
   id="map"
@@ -11,10 +12,13 @@
     <div class="col">
       <div class="card">
         <% if(campground.images.length) { %>
-          <img
-            class="img-fluid"
-            src="<%= campground.images[0].url%>"
-            alt="Image of campground" />
+          <div class="img-square-wrapper">
+            <img
+              crossorigin="anonymous"
+              class="img-fluid object-fit-cover"
+              src="<%= campground.images[0].url%>"
+              alt="Image of campground" />
+          </div>
           <% } else { %>
           <img
             crossorigin="anonymous"
@@ -25,7 +29,7 @@
           <% } %>
           <div class="card-body">
             <h5 class="card-title"><%= campground.title%></h5>
-            <p class="card-text"><%= campground.description %></p>
+            <p class="card-text clamp"><%= campground.description %></p>
             <p class="card-text">
               <small class="text-secondary"><%= campground.location%></small>
             </p>
